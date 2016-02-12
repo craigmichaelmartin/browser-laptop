@@ -129,7 +129,7 @@ function loadRulesetsById (rulesetIds, cb, errback) {
   db.all(queryForRuleset, function (err, rows) {
     var applicableRules
     try {
-      applicableRules = rows ? rows.map(item => { return JSON.parse(item.contents) }) : []
+      applicableRules = rows ? rows.map((item) => { return JSON.parse(item.contents) }) : []
     } catch (e) {
       err = e
     }

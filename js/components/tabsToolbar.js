@@ -23,9 +23,9 @@ class TabsToolbar extends ImmutableComponent {
     const tabPageIndex = this.props.tabs.get('tabPageIndex')
     const startingFrameIndex = tabPageIndex * this.props.tabsPerTabPage
     const pinnedFrames = this.props.frames
-      .filter(frame => frame.get('isPinned'))
+      .filter((frame) => frame.get('isPinned'))
     const currentFrames = this.props.frames
-      .filter(frame => !frame.get('isPinned'))
+      .filter((frame) => !frame.get('isPinned'))
       .slice(startingFrameIndex, startingFrameIndex + this.props.tabsPerTabPage)
 
     return <div className='tabsToolbar'>

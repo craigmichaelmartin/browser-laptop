@@ -76,7 +76,7 @@ class SiteInfo extends ImmutableComponent {
     }
 
     return <Dialog onHide={this.props.onHide} className='siteInfo' isClickDismiss>
-      <ul onClick={e => e.stopPropagation()}>
+      <ul onClick={(e) => e.stopPropagation()}>
       { secureIcon }
       { partitionInfo }
       { this.isBlockingTrackedContent
@@ -90,7 +90,7 @@ class SiteInfo extends ImmutableComponent {
       { this.isTPListShown && this.blockedByTrackingList && this.blockedByTrackingList.size > 0
         ? <li><ul>
         {
-          this.blockedByTrackingList.map(site => <li key={site}>{site}</li>)
+          this.blockedByTrackingList.map((site) => <li key={site}>{site}</li>)
         }
         </ul></li> : null
       }
@@ -105,7 +105,7 @@ class SiteInfo extends ImmutableComponent {
       { this.isBlockingAds && this.isBlockedAdsShown
         ? <li><ul>
         {
-          this.blockedAds.map(site => <li key={site}>{site}</li>)
+          this.blockedAds.map((site) => <li key={site}>{site}</li>)
         }
         </ul></li> : null
       }

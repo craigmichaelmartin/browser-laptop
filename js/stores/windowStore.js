@@ -49,7 +49,7 @@ const updateTabPageIndex = (frameProps) => {
   }
 
   const index = FrameStateUtil.getFrameTabPageIndex(windowState.get('frames')
-      .filter(frame => !frame.get('isPinned')), frameProps, windowStore.cachedSettings[settings.TABS_PER_TAB_PAGE])
+      .filter((frame) => !frame.get('isPinned')), frameProps, windowStore.cachedSettings[settings.TABS_PER_TAB_PAGE])
   if (index === -1) {
     return
   }
@@ -397,7 +397,7 @@ const doAction = (action) => {
     case WindowConstants.WINDOW_SET_PINNED:
       // Check if there's already a frame which is pinned.
       // If so we just want to set it as active.
-      const alreadyPinnedFrameProps = windowState.get('frames').find(frame => frame.get('isPinned') && frame.get('location') === action.frameProps.get('location'))
+      const alreadyPinnedFrameProps = windowState.get('frames').find((frame) => frame.get('isPinned') && frame.get('location') === action.frameProps.get('location'))
       if (alreadyPinnedFrameProps && action.isPinned) {
         action.actionType = WindowConstants.WINDOW_CLOSE_FRAME
         doAction(action)
@@ -503,7 +503,7 @@ ipc.on(messages.SHORTCUT_PREV_TAB, () => {
 })
 
 const frameShortcuts = ['stop', 'reload', 'zoom-in', 'zoom-out', 'zoom-reset', 'toggle-dev-tools', 'clean-reload', 'view-source', 'mute', 'save', 'print', 'show-findbar']
-frameShortcuts.forEach(shortcut => {
+frameShortcuts.forEach((shortcut) => {
   // Listen for actions on the active frame
   ipc.on(`shortcut-active-frame-${shortcut}`, () => {
     windowState = windowState.mergeIn(activeFrameStatePath(), {

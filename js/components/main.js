@@ -75,7 +75,7 @@ class Main extends ImmutableComponent {
   loadOpenSearch () {
     let engine = getSetting(this.props.appState.get('settings'), settings.DEFAULT_SEARCH_ENGINE)
     if (this.lastLoadedOpenSearch === undefined || engine !== this.lastLoadedOpenSearch) {
-      loadOpenSearch(engine).then(searchDetail => WindowActions.setSearchDetail(searchDetail))
+      loadOpenSearch(engine).then((searchDetail) => WindowActions.setSearchDetail(searchDetail))
       this.lastLoadedOpenSearch = engine
     }
   }
@@ -94,7 +94,7 @@ class Main extends ImmutableComponent {
     })
     ipc.on(messages.SHORTCUT_NEW_FRAME, (event, url, options = {}) => {
       if (options.singleFrame) {
-        const frameProps = self.props.windowState.get('frames').find(frame => frame.get('location') === url)
+        const frameProps = self.props.windowState.get('frames').find((frame) => frame.get('location') === url)
         if (frameProps) {
           WindowActions.setActiveFrame(frameProps)
           return
@@ -123,8 +123,8 @@ class Main extends ImmutableComponent {
       WindowActions.setActiveFrame(self.props.windowState.getIn(['frames', self.props.windowState.get('frames').size - 1])))
 
     ipc.on(messages.BLOCKED_RESOURCE, (e, blockType, details) => {
-      const filteredFrameProps = this.props.windowState.get('frames').filter(frame => frame.get('location') === details.firstPartyUrl)
-      filteredFrameProps.forEach(frameProps =>
+      const filteredFrameProps = this.props.windowState.get('frames').filter((frame) => frame.get('location') === details.firstPartyUrl)
+      filteredFrameProps.forEach((frameProps) =>
         WindowActions.setBlockedBy(frameProps, blockType, details.url))
     })
 
@@ -211,9 +211,9 @@ class Main extends ImmutableComponent {
 
     this.frames = {}
     const settingsState = this.props.appState.get('settings') || new Immutable.Map()
-    const nonPinnedFrames = this.props.windowState.get('frames').filter(frame => !frame.get('isPinned'))
+    const nonPinnedFrames = this.props.windowState.get('frames').filter((frame) => !frame.get('isPinned'))
     const tabsPerPage = getSetting(settingsState, settings.TABS_PER_TAB_PAGE)
-    return <div id='window' ref={node => this.mainWindow = node}>
+    return <div id='window' ref={(node) => this.mainWindow = node}>
       <div className='top'>
         <div className='backforward'>
           <span
@@ -226,7 +226,7 @@ class Main extends ImmutableComponent {
             onClick={this.onForward.bind(this)} />
         </div>
         <NavigationBar
-          ref={node => this.navBar = node}
+          ref={(node) => this.navBar = node}
           navbar={activeFrame && activeFrame.get('navbar')}
           frames={this.props.windowState.get('frames')}
           sites={this.props.appState.get('sites')}
@@ -278,9 +278,9 @@ class Main extends ImmutableComponent {
         onFocus={this.onMainFocus.bind(this)}>
         <div className='tabContainer'>
         {
-          sortedFrames.map(frame =>
+          sortedFrames.map((frame) =>
             <Frame
-              ref={node => this.frames[frame.get('key')] = node}
+              ref={(node) => this.frames[frame.get('key')] = node}
               prefOpenInForeground={getSetting(settingsState, settings.SWITCH_TO_NEW_TABS)}
               frames={this.props.windowState.get('frames')}
               frame={frame}

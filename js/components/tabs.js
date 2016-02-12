@@ -34,7 +34,7 @@ class Tabs extends ImmutableComponent {
 
   get totalPages () {
     return Math.ceil(this.props.frames
-        .filter(frame => !frame.get('isPinned'))
+        .filter((frame) => !frame.get('isPinned'))
         .size / this.props.tabsPerTabPage)
   }
 
@@ -50,8 +50,8 @@ class Tabs extends ImmutableComponent {
         })()}
         {
           this.props.currentFrames
-            .filter(frameProps => !frameProps.get('isPinned'))
-            .map(frameProps =>
+            .filter((frameProps) => !frameProps.get('isPinned'))
+            .map((frameProps) =>
                 <Tab activeDraggedTab={this.props.tabs.get('activeDraggedTab')}
                   frameProps={frameProps}
                   frames={this.props.frames}

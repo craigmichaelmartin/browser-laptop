@@ -263,11 +263,11 @@ class UrlBar extends ImmutableComponent {
         })}
         id='urlInput'
         readOnly={this.props.titleMode}
-        ref={node => this.urlInput = node}/>
+        ref={(node) => this.urlInput = node}/>
         { !this.props.titleMode
           ? <span className='loadTime'>{this.loadTime}</span> : null }
         <UrlBarSuggestions
-          ref={node => this.urlBarSuggestions = node}
+          ref={(node) => this.urlBarSuggestions = node}
           suggestions={this.props.urlbar.get('suggestions')}
           settings={this.props.settings}
           sites={this.props.sites}

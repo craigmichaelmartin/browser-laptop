@@ -109,7 +109,7 @@ class UrlBarSuggestions extends ImmutableComponent {
       return null
     }
 
-    const navigateClickHandler = formatUrl => site => {
+    const navigateClickHandler = (formatUrl) => (site) => {
       const location = formatUrl(site)
       WindowActions.setNavBarUserInput(location)
       WindowActions.loadUrl(this.props.activeFrameProps, location)
@@ -118,22 +118,22 @@ class UrlBarSuggestions extends ImmutableComponent {
     }
 
     let suggestions = new Immutable.List()
-    const defaultme = x => x
+    const defaultme = (x) => x
     const mapListToElements = ({data, maxResults, classHandler, clickHandler = navigateClickHandler,
         sortHandler = defaultme, formatTitle = defaultme,
-        filterValue = site => site.toLowerCase().includes(this.props.urlLocation.toLowerCase())
+        filterValue = (site) => site.toLowerCase().includes(this.props.urlLocation.toLowerCase())
     }) => // Filter out things which are already in our own list at a smaller index
       data.filter((site, index) => {
-        return data.findIndex(x => formatTitle(x).toLowerCase() === formatTitle(site).toLowerCase()) === index
+        return data.findIndex((x) => formatTitle(x).toLowerCase() === formatTitle(site).toLowerCase()) === index
       })
       // Per suggestion provider filter
       .filter(filterValue)
       // Filter out things which are already in the suggestions list
-      .filter(site =>
-        suggestions.findIndex(x => x.title.toLowerCase() === formatTitle(site).toLowerCase()) === -1)
+      .filter((site) =>
+        suggestions.findIndex((x) => x.title.toLowerCase() === formatTitle(site).toLowerCase()) === -1)
       .sort(sortHandler)
       .take(maxResults)
-      .map(site => {
+      .map((site) => {
         return {
           onClick: clickHandler.bind(null, site),
           title: formatTitle(site),
@@ -149,8 +149,8 @@ class UrlBarSuggestions extends ImmutableComponent {
         classHandler: () => 'fa-file',
         clickHandler: (frameProps) =>
           WindowActions.setActiveFrame(frameProps),
-        formatTitle: frame => frame.get('title') || frame.get('location'),
-        filterValue: frame => !isSourceAboutUrl(frame.get('location')) &&
+        formatTitle: (frame) => frame.get('title') || frame.get('location'),
+        filterValue: (frame) => !isSourceAboutUrl(frame.get('location')) &&
           frame.get('key') !== this.props.activeFrameProps.get('key') &&
           (frame.get('title') && frame.get('title').toLowerCase().includes(this.props.urlLocation.toLowerCase()) ||
           frame.get('location') && frame.get('location').toLowerCase().includes(this.props.urlLocation.toLowerCase()))}))
@@ -162,14 +162,14 @@ class UrlBarSuggestions extends ImmutableComponent {
         data: this.props.sites,
         maxResults: Config.urlBarSuggestions.maxSites,
         classHandler: getSiteIconClass,
-        clickHandler: navigateClickHandler(site => {
+        clickHandler: navigateClickHandler((site) => {
           return site.get('location')
         }),
         sortHandler: (site1, site2) => {
           return site2.get('tags').size - site1.get('tags').size
         },
-        formatTitle: site => site.get('title') || site.get('location'),
-        filterValue: site => {
+        formatTitle: (site) => site.get('title') || site.get('location'),
+        filterValue: (site) => {
           const title = site.get('title') || ''
           const location = site.get('location') || ''
           return title.toLowerCase().includes(this.props.urlLocation.toLowerCase()) ||
@@ -184,7 +184,7 @@ class UrlBarSuggestions extends ImmutableComponent {
         data: this.props.suggestions.get('searchResults'),
         maxResults: Config.urlBarSuggestions.maxTopSites,
         classHandler: () => 'fa-search',
-        clickHandler: navigateClickHandler(searchTerms => this.props.searchDetail.get('searchURL')
+        clickHandler: navigateClickHandler((searchTerms) => this.props.searchDetail.get('searchURL')
           .replace('{searchTerms}', searchTerms))}))
     }
 
@@ -193,7 +193,7 @@ class UrlBarSuggestions extends ImmutableComponent {
       data: top500,
       maxResults: Config.urlBarSuggestions.maxSearch,
       classHandler: () => 'fa-link',
-      clickHandler: navigateClickHandler(x => x)}))
+      clickHandler: navigateClickHandler((x) => x)}))
 
     // Update the urlbar preview content
     if (newIndex === 0 || newIndex > suggestions.size) {

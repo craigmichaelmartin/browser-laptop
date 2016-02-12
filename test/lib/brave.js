@@ -143,7 +143,7 @@ var exports = {
 
     this.app.client.addCommand('windowParentByUrl', function (url, childSelector = 'webview') {
       var context = this
-      return this.windowHandles().then(response => response.value).then(function (handles) {
+      return this.windowHandles().then((response) => response.value).then(function (handles) {
         return promiseMapSeries(handles, function (handle) {
           return context.window(handle).getAttribute(childSelector, 'src').catch(() => '')
         })
@@ -159,7 +159,7 @@ var exports = {
 
     this.app.client.addCommand('windowByUrl', function (url) {
       var context = this
-      return this.windowHandles().then(response => response.value).then(function (handles) {
+      return this.windowHandles().then((response) => response.value).then(function (handles) {
         return promiseMapSeries(handles, function (handle) {
           return context.window(handle).getUrl()
         })
@@ -194,7 +194,7 @@ var exports = {
             activeElement = el
             return this.element(selector)
           })
-          .then(queryElement => queryElement.value.ELEMENT === activeElement.value.ELEMENT)
+          .then((queryElement) => queryElement.value.ELEMENT === activeElement.value.ELEMENT)
       })
     })
   },

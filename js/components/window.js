@@ -55,7 +55,7 @@ class Window extends React.Component {
         })
       } else {
         WindowStore.suspend()
-        this.props.frames.forEach(frame => {
+        this.props.frames.forEach((frame) => {
           WindowActions.newFrame(frame)
         })
         WindowStore.resume()
@@ -96,11 +96,11 @@ class Window extends React.Component {
 
     // Check for new pinned sites which we don't already know about
     const sitesToAdd = sites
-      .filter(site => site.get('tags').includes(SiteTags.PINNED) &&
-        !frames.find(frame => frame.get('isPinned') &&
+      .filter((site) => site.get('tags').includes(SiteTags.PINNED) &&
+        !frames.find((frame) => frame.get('isPinned') &&
         // Compare to the original src of the pinned frame
         frame.get('src') === site.get('location')))
-    sitesToAdd.forEach(site => {
+    sitesToAdd.forEach((site) => {
       WindowActions.newFrame({
         location: site.get('location'),
         isPinned: true
@@ -108,11 +108,11 @@ class Window extends React.Component {
     })
 
     // Check for unpinned sites which should be closed
-    const framesToClose = frames.filter(frame =>
+    const framesToClose = frames.filter((frame) =>
       frame.get('isPinned') &&
       // Compare to the original src of the pinned frame
-      !sites.find(site => frame.get('src') === site.get('location') && site.get('tags').includes(SiteTags.PINNED)))
-    framesToClose.forEach(frameProps => WindowActions.closeFrame(frames, frameProps, true))
+      !sites.find((site) => frame.get('src') === site.get('location') && site.get('tags').includes(SiteTags.PINNED)))
+    framesToClose.forEach((frameProps) => WindowActions.closeFrame(frames, frameProps, true))
   }
 }
 Window.propTypes = { appState: React.PropTypes.object, frames: React.PropTypes.array, initWindowState: React.PropTypes.object }

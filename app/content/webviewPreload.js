@@ -142,12 +142,12 @@
       '[id^="ad-slot-banner-"]',
       '[data-ad-slot]'
     ]
-    commonSelectors.forEach(commonSelector => {
+    commonSelectors.forEach((commonSelector) => {
       var nodes = document.querySelectorAll(commonSelector)
       if (!nodes) {
         return
       }
-      Array.from(nodes).forEach(node => {
+      Array.from(nodes).forEach((node) => {
         processAdNode(node, fallbackNodeDataForCommon[node.id], placeholderUrl)
       })
     })

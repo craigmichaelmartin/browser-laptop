@@ -10,7 +10,7 @@ const {onTabPageContextMenu} = require('../contextMenus')
 
 class TabPage extends ImmutableComponent {
   render () {
-    const audioPlaybackActive = this.props.frames.find(frame =>
+    const audioPlaybackActive = this.props.frames.find((frame) =>
         frame.get('audioPlaybackActive') && !frame.get('audioMuted'))
     return <span data-tab-page={this.props.index}
       className={cx({

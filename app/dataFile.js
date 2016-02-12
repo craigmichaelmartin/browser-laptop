@@ -127,7 +127,7 @@ module.exports.init = (resourceName, startExtension, onInitDone, forceDownload) 
     return
   }
 
-  const doneInit = data => {
+  const doneInit = (data) => {
     // Make sure we keep a reference to the data since
     // it's used directly
     // console.log('done init:', resourceName)

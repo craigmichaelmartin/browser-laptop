@@ -144,7 +144,7 @@ class AppStore {
 
   emitChange () {
     const stateJS = this.getState().toJS()
-    BrowserWindow.getAllWindows().forEach(wnd =>
+    BrowserWindow.getAllWindows().forEach((wnd) =>
       wnd.webContents.send(messages.APP_STATE_CHANGE, stateJS))
   }
 }
@@ -206,7 +206,7 @@ const handleAppAction = (action) => {
           frames.push(frameOpts)
         }
       } else if (getSetting(settingsState, settings.STARTUP_MODE) === 'homePage' && homepageSetting) {
-        frames = homepageSetting.split('|').map(homepage => {
+        frames = homepageSetting.split('|').map((homepage) => {
           return {
             location: homepage
           }

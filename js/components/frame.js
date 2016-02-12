@@ -340,7 +340,7 @@ class Frame extends ImmutableComponent {
         frame={this.props.frame}
         findDetail={this.props.frame.get('findDetail')}
       /> : null }
-      <div ref={node => this.webviewContainer = node}
+      <div ref={(node) => this.webviewContainer = node}
         className={cx({
           webviewContainer: true,
           isPreview: this.props.isPreview

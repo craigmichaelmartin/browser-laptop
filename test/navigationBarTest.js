@@ -32,7 +32,7 @@ describe('urlbar', function () {
 
   function defaultUrlInputValue (client) {
     return client.waitUntil(function () {
-      return this.getAttribute(urlInput, 'value').then(value => value === '')
+      return this.getAttribute(urlInput, 'value').then((value) => value === '')
     })
     .getAttribute(urlInput, 'placeholder').should.eventually.equal('Search or enter an address')
   }
@@ -43,7 +43,7 @@ describe('urlbar', function () {
       // hit enter
       .keys('\uE007')
       .waitUntil(function () {
-        return this.getAttribute(activeWebview, 'src').then(src => src === url)
+        return this.getAttribute(activeWebview, 'src').then((src) => src === url)
       })
   }
 
@@ -68,9 +68,9 @@ describe('urlbar', function () {
       it('has title mode', function *() {
         const host = this.host
         yield this.app.client.waitUntil(function () {
-          return this.getText(titleBar).then(val => val === host + ' | Page 1')
+          return this.getText(titleBar).then((val) => val === host + ' | Page 1')
         })
-        .isExisting(navigatorLoadTime).then(isExisting => assert(!isExisting))
+        .isExisting(navigatorLoadTime).then((isExisting) => assert(!isExisting))
       })
 
       it('shows the url on mouseover', function *() {
@@ -86,7 +86,7 @@ describe('urlbar', function () {
         yield this.app.client
           .ipcSend('shortcut-focus-url', false)
           .waitUntil(function () {
-            return this.getCssProperty(titleBar, 'display').then(display => display.value === 'none')
+            return this.getCssProperty(titleBar, 'display').then((display) => display.value === 'none')
           })
         yield selectsText(this.app.client, page1Url)
       })
@@ -109,7 +109,7 @@ describe('urlbar', function () {
       it('does not have title mode', function *() {
         yield this.app.client
           .waitUntil(function () {
-            return this.getCssProperty(titleBar, 'display').then(display => display.value === 'none')
+            return this.getCssProperty(titleBar, 'display').then((display) => display.value === 'none')
           })
           .waitForExist(navigatorLoadTime)
       })
@@ -127,7 +127,7 @@ describe('urlbar', function () {
       const page1Url = Brave.server.url('page1.html')
       yield navigate(this.app.client, page1Url)
       yield this.app.client.waitUntil(() =>
-        this.app.client.getCssProperty(activeTabFavicon, 'background-image').then(backgroundImage =>
+        this.app.client.getCssProperty(activeTabFavicon, 'background-image').then((backgroundImage) =>
           backgroundImage.value === `url("${Brave.server.url('favicon.ico')}")`
         ))
     })
@@ -136,7 +136,7 @@ describe('urlbar', function () {
       const pageWithFavicon = Brave.server.url('favicon.html')
       yield navigate(this.app.client, pageWithFavicon)
       yield this.app.client.waitUntil(() =>
-        this.app.client.getCssProperty(activeTabFavicon, 'background-image').then(backgroundImage =>
+        this.app.client.getCssProperty(activeTabFavicon, 'background-image').then((backgroundImage) =>
           backgroundImage.value === `url("${Brave.server.url('img/test.ico')}")`
       ))
     })
@@ -155,7 +155,7 @@ describe('urlbar', function () {
       yield this.app.client.waitUntil(() =>
         this.app.client
           .moveToObject(urlInput)
-          .getAttribute(urlbarIcon, 'class').then(classes =>
+          .getAttribute(urlbarIcon, 'class').then((classes) =>
             classes.includes('fa-unlock')
         ))
     })
@@ -165,7 +165,7 @@ describe('urlbar', function () {
       yield this.app.client
         .moveToObject(urlInput)
         .waitUntil(() =>
-          this.app.client.getAttribute(urlbarIcon, 'class').then(classes =>
+          this.app.client.getAttribute(urlbarIcon, 'class').then((classes) =>
             classes.includes('fa-lock')
           ))
     })
@@ -190,7 +190,7 @@ describe('urlbar', function () {
       const pageWithFavicon = Brave.server.url('theme_color.html')
       yield navigate(this.app.client, pageWithFavicon)
       yield this.app.client.waitUntil(() =>
-        this.app.client.getCssProperty(activeTab, 'background-color').then(backgroundColor =>
+        this.app.client.getCssProperty(activeTab, 'background-color').then((backgroundColor) =>
           backgroundColor.parsed.hex === '#4d90fe'
       ))
     })
@@ -198,14 +198,14 @@ describe('urlbar', function () {
       const redPage = Brave.server.url('red_bg.html')
       yield navigate(this.app.client, redPage)
       yield this.app.client.waitUntil(() =>
-        this.app.client.getCssProperty(activeTab, 'background-color').then(backgroundColor =>
+        this.app.client.getCssProperty(activeTab, 'background-color').then((backgroundColor) =>
           backgroundColor.parsed.hex === '#ff0000'))
     })
     it('Obtains theme color from a top header and not background', function *() {
       const redPage = Brave.server.url('yellow_header.html')
       yield navigate(this.app.client, redPage)
       yield this.app.client.waitUntil(() =>
-        this.app.client.getCssProperty(activeTab, 'background-color').then(backgroundColor =>
+        this.app.client.getCssProperty(activeTab, 'background-color').then((backgroundColor) =>
           backgroundColor.parsed.hex === '#ffff66'))
     })
   })
@@ -265,7 +265,7 @@ describe('urlbar', function () {
 
       it('gives focus to the webview', function () {
         this.app.client.waitUntil(function () {
-          return this.getAttribute(':focus', 'src').then(src => src === this.page1)
+          return this.getAttribute(':focus', 'src').then((src) => src === this.page1)
         })
       })
     })
@@ -358,7 +358,7 @@ describe('urlbar', function () {
       yield newFrame(this.app.client, 2)
       yield this.app.client
         .waitUntil(function () {
-          return this.keys('a').getValue(urlInput).then(val => val === 'a')
+          return this.keys('a').getValue(urlInput).then((val) => val === 'a')
         })
       // tab with loaded url
       yield newFrame(this.app.client, 3)
@@ -379,7 +379,7 @@ describe('urlbar', function () {
 
       it('focuses on the webview', function *() {
         this.app.client.waitUntil(function () {
-          return this.getAttribute(':focus', 'src').then(src => src === Config.defaultUrl)
+          return this.getAttribute(':focus', 'src').then((src) => src === Config.defaultUrl)
         })
       })
     })
@@ -394,7 +394,7 @@ describe('urlbar', function () {
       it('preserves typing state', function *() {
         yield this.app.client
           .waitUntil(function () {
-            return this.getValue(urlInput).then(val => val === 'a')
+            return this.getValue(urlInput).then((val) => val === 'a')
           })
         yield selectsText(this.app.client, '')
       })
@@ -408,7 +408,7 @@ describe('urlbar', function () {
 
       it('focuses on the webview', function *() {
         this.app.client.waitUntil(function () {
-          return this.getAttribute(':focus', 'src').then(src => src === Brave.server.url('page1.html'))
+          return this.getAttribute(':focus', 'src').then((src) => src === Brave.server.url('page1.html'))
         })
       })
     })

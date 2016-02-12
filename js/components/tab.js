@@ -199,7 +199,7 @@ class Tab extends ImmutableComponent {
           this.props.frameProps.get('tabIsDraggingOverRightHalf')
       })}
       data-frame-key={this.props.frameProps.get('key')}
-      ref={node => this.tab = node}
+      ref={(node) => this.tab = node}
       draggable='true'
       title={this.props.frameProps.get('title')}
       onMouseEnter={this.props.previewTabs ? this.onMouseEnter.bind(this) : null}

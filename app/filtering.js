@@ -15,7 +15,7 @@ const getBaseDomain = require('../js/lib/baseDomain').getBaseDomain
 
 const filteringFns = []
 
-module.exports.registerFilteringCB = filteringFn => {
+module.exports.registerFilteringCB = (filteringFn) => {
   filteringFns.push(filteringFn)
 }
 
@@ -62,7 +62,7 @@ function registerForSession (session) {
     } else if (results.shouldBlock) {
       // We have no good way of knowing which BrowserWindow the blocking is for
       // yet so send it everywhere and let listeners decide how to respond.
-      BrowserWindow.getAllWindows().forEach(wnd =>
+      BrowserWindow.getAllWindows().forEach((wnd) =>
         wnd.webContents.send(messages.BLOCKED_RESOURCE, results.resourceName, details))
       cb({
         requestHeaders: requestHeaders,

@@ -132,7 +132,7 @@ export default class FindBar extends ImmutableComponent {
     return <div className='findBar'>
       <span className='searchStringContainer'>
         <input type='text'
-          ref={node => this.searchInput = node}
+          ref={(node) => this.searchInput = node}
           onKeyDown={this.onKeyDown.bind(this)}
           onChange={this.onChange.bind(this)}
           value={this.searchString}/>

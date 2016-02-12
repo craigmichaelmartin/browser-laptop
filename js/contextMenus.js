@@ -14,7 +14,7 @@ const ipc = global.require('electron').ipcRenderer
 
 function tabPageTemplateInit (framePropsList) {
   const muteAll = (framePropsList, mute) => {
-    framePropsList.forEach(frameProps => {
+    framePropsList.forEach((frameProps) => {
       if (mute && frameProps.get('audioPlaybackActive') && !frameProps.get('audioMuted')) {
         WindowActions.setAudioMuted(frameProps, true)
       } else if (!mute && frameProps.get('audioMuted')) {
@@ -82,14 +82,14 @@ function tabTemplateInit (frameProps) {
     if (frameProps.get('audioMuted')) {
       items.push({
         label: 'Unmute tab',
-        click: item => {
+        click: (item) => {
           WindowActions.setAudioMuted(frameProps, false)
         }
       })
     } else {
       items.push({
         label: 'Mute tab',
-        click: item => {
+        click: (item) => {
           WindowActions.setAudioMuted(frameProps, true)
         }
       })

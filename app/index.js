@@ -97,7 +97,7 @@ app.on('ready', function () {
     }
 
     e.preventDefault()
-    BrowserWindow.getAllWindows().forEach(win => win.webContents.send(messages.REQUEST_WINDOW_STATE))
+    BrowserWindow.getAllWindows().forEach((win) => win.webContents.send(messages.REQUEST_WINDOW_STATE))
   })
 
   ipcMain.on(messages.RESPONSE_WINDOW_STATE, (wnd, data) => {
@@ -107,7 +107,7 @@ app.on('ready', function () {
     saveIfAllCollected()
   })
 
-  loadAppStatePromise.then(initialState => {
+  loadAppStatePromise.then((initialState) => {
     // For tests we always want to load default app state
     if (process.env.NODE_ENV === 'test') {
       initialState = SessionStore.defaultAppState()
@@ -118,13 +118,13 @@ app.on('ready', function () {
     delete initialState.perWindowState
     appActions.setState(Immutable.fromJS(initialState))
     return perWindowState
-  }).then(perWindowState => {
+  }).then((perWindowState) => {
     if (!perWindowState || perWindowState.length === 0) {
       if (!CmdLine.newWindowURL) {
         appActions.newWindow()
       }
     } else {
-      perWindowState.forEach(wndState => {
+      perWindowState.forEach((wndState) => {
         appActions.newWindow(undefined, undefined, wndState)
       })
     }

@@ -11,8 +11,8 @@ class PinnedTabs extends ImmutableComponent {
     return <div className='pinnedTabs'>
        {
           this.props.frames
-            .filter(frameProps => frameProps.get('isPinned'))
-            .map(frameProps =>
+            .filter((frameProps) => frameProps.get('isPinned'))
+            .map((frameProps) =>
                 <Tab activeDraggedTab={this.props.tabs.get('activeDraggedTab')}
                   frameProps={frameProps}
                   frames={this.props.frames}

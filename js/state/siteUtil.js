@@ -14,7 +14,7 @@ const siteTags = require('../constants/siteTags')
  * @return index of the location or -1 if not found.
  */
 module.exports.getSiteUrlIndex = function (sites, location) {
-  return sites.findIndex(site => site.get('location') === location)
+  return sites.findIndex((site) => site.get('location') === location)
 }
 
 /**

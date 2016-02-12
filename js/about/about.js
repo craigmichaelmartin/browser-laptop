@@ -12,7 +12,7 @@ class AboutAbout extends ImmutableComponent {
       <h1 data-l10n-id='listOfAboutPages'/>
       <ul>
       {
-    aboutUrls.keySeq().sort().map(aboutSourceUrl =>
+    aboutUrls.keySeq().sort().map((aboutSourceUrl) =>
         <li>
           <a href={aboutUrls.get(aboutSourceUrl)} target='_blank'>
             {aboutSourceUrl}
